@@ -1,105 +1,164 @@
-# Modern Honeypot Network (MHN) & Splunk Integration Lab
+<div align="center">
 
-![Build Status](https://img.shields.io/badge/Status-Deprecated%2FProof_of_Concept-red)
-![Platform](https://img.shields.io/badge/Platform-AWS_EC2-FF9900)
-![OS](https://img.shields.io/badge/OS-Ubuntu_18.04-E95420)
+<img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white">
+<img src="https://img.shields.io/badge/Honeypot-MHN-blue">
+<img src="https://img.shields.io/badge/SIEM-Splunk-000000?logo=splunk&logoColor=white">
+<img src="https://img.shields.io/badge/Dionaea-Honeypot-green">
+<img src="https://img.shields.io/badge/Ubuntu-18.04-orange?logo=ubuntu&logoColor=white">
 
-## 🛑 Project Disclaimer
-**Status:** Deprecated  
-*I highly recommend not using MHN for production or modern deployments. It is no longer officially supported, relies on outdated dependencies (like Python 2.7), and requires significant manual troubleshooting to function.* [cite: 983] [cite_start]*This repository serves purely as a proof-of-concept homelab to demonstrate honeypot deployment, legacy system troubleshooting, and SIEM integration.* [cite: 982]
+<br><br>
 
-## 📖 Overview
-[cite_start]This project demonstrates the deployment of a Modern Honeypot Network (MHN) server on AWS, the deployment of a Dionaea honeypot sensor, and the custom integration of attack logs into Splunk Enterprise for threat analysis and geo-location mapping. [cite: 9, 522, 596, 895]
+# Modern Honey Network (MHN) + Splunk Integration
 
-### Team Members
-* [cite_start]M. Abdullah Siddiqui [cite: 4]
-* [cite_start]Salman Saeed [cite: 5]
-* [cite_start]Umar Khan [cite: 6]
-* [cite_start]Zia Ullah [cite: 7]
-* [cite_start]Mehboob [cite: 8]
+**Threat Intelligence Honeypot Lab on AWS**
+
+`HONEYPOT DEPLOYMENT · TROUBLESHOOTING · SIEM INTEGRATION · REAL-TIME VISUALIZATION`
+
+</div>
 
 ---
 
-## 🏗️ Architecture & Infrastructure
-* [cite_start]**Cloud Provider:** Amazon Web Services (AWS) [cite: 9]
-* [cite_start]**Instance Type:** `t3.micro` (1GB RAM, 15GB Disk Space) [cite: 21, 54]
-* [cite_start]**Operating System:** Ubuntu 18.04 LTS (Required due to MHN compatibility limitations) [cite: 10, 18]
-* [cite_start]**Honeypot Sensor:** Dionaea [cite: 522]
-* [cite_start]**SIEM:** Splunk Enterprise (Local VM) [cite: 596]
+### Author
+**Muhammad Abdullah Siddiqui**
 
-### Security Group (Inbound Rules)
-[cite_start]To ensure proper communication, the following ports were opened[cite: 99]:
-* [cite_start]**HTTPS:** 443 (TCP) [cite: 141, 142, 143]
-* [cite_start]**SSH:** 22 (TCP) [cite: 147, 148, 149]
-* [cite_start]**HTTP:** 80 (TCP) [cite: 159, 160, 161]
-* [cite_start]**Custom TCP:** 8181 [cite: 165, 166, 167]
-* [cite_start]**All Traffic:** Allowed for honeypot sensor traffic [cite: 153, 154, 155]
+### Group Members
+- M. Abdullah Siddiqui
+- Salman Saeed
+- Umar Khan
+- Zia Ullah
+- Mehboob
 
-![AWS EC2 Security Groups](./images/aws-security-groups.png) 
-[cite_start]*(Note: Replace with your inbound rules screenshot)* [cite: 102]
+### Environment
+AWS EC2 (Ubuntu 18.04) + Local VMware Workstation
+
+### Stack
+Modern Honey Network (MHN) · Dionaea · Splunk Enterprise
 
 ---
 
-## 🛠️ Deployment Steps & Troubleshooting
+## Project Overview
 
-### 1. MHN Server Installation
-[cite_start]The MHN installation requires a Python 2.7 virtual environment. [cite: 190]
-[cite_start]During the setup script execution, several legacy services failed to start. [cite: 255, 256, 259]
-
-**Troubleshooting Supervisor Errors:**
-[cite_start]The `mhn-collector` and `mnemosyne` services exited fatally. [cite: 266, 267]
-* **Fix:** The configuration files were missing from the deployment. [cite_start]I had to manually create `/opt/mhn/mhn-collector.py` using archived source code and update the supervisor configuration (`/etc/supervisor/conf.d/mhn-collector.conf`). [cite: 268, 273, 300]
-* [cite_start]After reloading supervisorctl, all services transitioned to `RUNNING`. [cite: 301, 305, 315]
-
-### 2. Fixing the MHN Web UI
-[cite_start]Upon initial access, the MHN dashboard failed to render properly, preventing login. [cite: 367]
-* **Fix:** CSS and JS dependencies were broken. [cite_start]I accessed the archived Pwnlandia GitHub repository to manually download and restore the missing static files into `/server/mhn/static/`. [cite: 367, 372, 378, 406]
-
-![MHN Dashboard](./images/mhn-dashboard-working.png)
-[cite_start]*(Note: Replace with your working MHN login/dashboard screenshot)* [cite: 422, 429]
-
-### 3. Deploying the Dionaea Honeypot
-[cite_start]Dionaea was selected as the honeypot sensor. [cite: 522]
-[cite_start]Deployment was executed via a `wget` bash script generated directly from the MHN UI and executed on the target environment. [cite: 533]
-
-![Dionaea Deployment](./images/dionaea-deploy.png)
-[cite_start]*(Note: Replace with your honeypot deployment terminal screenshot)* [cite: 530]
+This project demonstrates the deployment of **Modern Honey Network (MHN)** on AWS, configuration of the **Dionaea** honeypot, and integration with **Splunk Enterprise** for log collection, analysis, and visualization.
 
 ---
 
-## 📊 Splunk SIEM Integration
+## 📂 Contents
 
-[cite_start]While MHN captures logs internally (`/var/log/mhn/mhn-splunk.log`), a custom integration was required to push this data to a local Splunk Enterprise instance. [cite: 596, 740, 746]
+1. [AWS Infrastructure Setup](#01-aws-infrastructure-setup)
+2. [MHN Server Installation & Troubleshooting](#02-mhn-server-installation--troubleshooting)
+3. [Dionaea Honeypot Deployment](#03-dionaea-honeypot-deployment)
+4. [Splunk Enterprise Setup & Integration](#04-splunk-enterprise-setup--integration)
+5. [Results & Visualizations](#05-results--visualizations)
+6. [Recommendations](#06-recommendations)
 
-### Splunk Configuration
-1. [cite_start]Installed Splunk 9.4.2 via `.deb` package on a local Ubuntu VM. [cite: 598]
-2. [cite_start]Configured a **HTTP Event Collector (HEC)** in Splunk. [cite: 687]
-3. [cite_start]Generated an access token and enabled HEC globally on port `8088`. [cite: 685, 725, 732]
+---
 
-![Splunk HEC Setup](./images/splunk-hec.png)
-[cite_start]*(Note: Replace with your Splunk Edit Token screenshot)* [cite: 692]
+## 01. AWS Infrastructure Setup
 
-### Custom Python Forwarder
-[cite_start]I authored a custom Python script (`splunk_forwarder.py`) to continuously read the MHN log file and push events to the Splunk HEC endpoint via HTTP POST requests. [cite: 746, 757, 762]
+- Chose Ubuntu 18.04 LTS because newer versions are not compatible with MHN.
+- Instance: 1 GB RAM, 15 GB disk space.
+- Created SSH key pair for access from local VM.
+- Configured Inbound & Outbound security rules.
 
-```python
-import time
-import requests
+![AWS EC2 Instance Launch](images/01-aws-ec2.png)
 
-splunk_url = 'http://<YOUR-SPLUNK-IP>:8088/services/collector/event'
-splunk_token = '<YOUR-HEC-TOKEN>'
-log_file = '/var/log/mhn/mhn-splunk.log'
+![SSH Key Download](images/02-key-download.png)
 
-headers = {
-    'Authorization': f'Splunk {splunk_token}',
-    'Content-Type': 'application/json'
-}
+![Security Group Rules](images/03-security-groups.png)
 
-with open(log_file, 'r') as f:
-    f.seek(0, 2) # Go to end of file
-    while True:
-        line = f.readline()
-        if not line:
-            time.sleep(0.5)
-            continue
-        # Request handling logic here
+![Successful SSH Connection](images/04-ssh-access.png)
+
+---
+
+## 02. MHN Server Installation & Troubleshooting
+
+- Used Python 2.7 in virtual environment due to outdated MHN.
+- Ran `install.sh`.
+- Fixed missing supervisor configuration files.
+- Resolved `mhn-collector` and `mhn-ui` spawn errors.
+- Manually downloaded missing CSS files from GitHub.
+
+![MHN Installation](images/05-mhn-install.png)
+
+![Supervisor Errors](images/06-supervisor-error.png)
+
+![Services Status After Fix](images/07-services-running.png)
+
+**MHN UI Issues & Fix:**
+
+![MHN UI Broken CSS](images/08-mhn-ui-broken.png)
+
+![Missing CSS Files from GitHub](images/09-github-css.png)
+
+![Final Working MHN Dashboard](images/10-mhn-ui-working.png)
+
+---
+
+## 03. Dionaea Honeypot Deployment
+
+Deployed Dionaea using MHN deployment script. Successfully started capturing attacks.
+
+![Dionaea Deployment Command](images/11-dionaea-deploy.png)
+
+![Live Attacks in MHN](images/12-mhn-attacks.png)
+
+**Real-time World Map:**
+
+![World Map Visualization](images/13-world-map.png)
+
+---
+
+## 04. Splunk Enterprise Setup & Integration
+
+- Installed Splunk Enterprise on local VM.
+- Configured HTTP Event Collector (HEC) with token.
+- Created `forward.py` script to send MHN logs to Splunk.
+
+![Splunk Installation](images/14-splunk-install.png)
+
+![Splunk Login](images/15-splunk-login.png)
+
+![HEC Token Configuration](images/16-hec-config.png)
+
+![Forward.py Script](images/17-forward-py.png)
+
+![Successful Log Forwarding](images/18-forwarding-success.png)
+
+---
+
+## 05. Results & Visualizations
+
+**Splunk Search Results:**
+
+![Splunk Logs Search](images/19-splunk-logs.png)
+
+![Geo Location Search](images/20-splunk-geo.png)
+
+![Final Splunk Dashboard](images/21-splunk-final.png)
+
+---
+
+## 06. Recommendations
+
+> **⚠️ Important Note**
+
+**I would recommend not to use MHN** since it is no longer supported. It is too much of a hassle due to outdated dependencies, missing files, and frequent issues. While it served as a good learning experience, please use modern alternatives for future projects.
+
+---
+
+## Technologies Used
+
+- **Cloud**: AWS EC2
+- **OS**: Ubuntu 18.04 LTS
+- **Honeypot**: Modern Honey Network (MHN) + Dionaea
+- **SIEM**: Splunk Enterprise 9.4.2
+- **Scripting**: Python 2.7, Bash
+
+---
+
+<div align="center">
+
+**Cyber Threat Intelligence Home Lab**  
+*Successfully Deployed & Integrated*
+
+</div>
