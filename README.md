@@ -54,13 +54,13 @@ This project demonstrates the deployment of **Modern Honey Network (MHN)** on AW
 - Created SSH key pair for access from local VM.
 - Configured Inbound & Outbound security rules.
 
-![AWS EC2 Instance Launch](images/01-aws-ec2.png)
+![AWS EC2 Instance Launch](01-aws-ec2.png)
 
-![SSH Key Download](images/02-key-download.png)
+![SSH Key Download](02-key-download.png)
 
-![Security Group Rules](images/03-security-groups.png)
+![Security Group Rules](03-security-groups.png)
 
-![Successful SSH Connection](images/04-ssh-access.png)
+![Successful SSH Connection](04-ssh-access.png)
 
 ---
 
@@ -74,17 +74,17 @@ This project demonstrates the deployment of **Modern Honey Network (MHN)** on AW
 
 ![MHN Installation](05-mhn-install.png)
 
-![Supervisor Errors](images/06-supervisor-error.png)
+![Supervisor Errors](06-supervisor-error.png)
 
-![Services Status After Fix](images/07-services-running.png)
+![Services Status After Fix](07-services-running.png)
 
 **MHN UI Issues & Fix:**
 
-![MHN UI Broken CSS](images/08-mhn-ui-broken.png)
+![MHN UI Broken CSS](08-mhn-ui-broken.png)
 
-![Missing CSS Files from GitHub](images/09-github-css.png)
+![Missing CSS Files from GitHub](09-github-css.png)
 
-![Final Working MHN Dashboard](images/10-mhn-ui-working.png)
+![Final Working MHN Dashboard](10-mhn-ui-working.png)
 
 ---
 
@@ -92,13 +92,13 @@ This project demonstrates the deployment of **Modern Honey Network (MHN)** on AW
 
 Deployed Dionaea using MHN deployment script. Successfully started capturing attacks.
 
-![Dionaea Deployment Command](images/11-dionaea-deploy.png)
+![Dionaea Deployment Command](11-dionaea-deploy.png)
 
-![Live Attacks in MHN](images/12-mhn-attacks.png)
+![Live Attacks in MHN](12-mhn-attacks.png)
 
 **Real-time World Map:**
 
-![World Map Visualization](images/13-world-map.png)
+![World Map Visualization](13-world-map.png)
 
 ---
 
@@ -108,15 +108,15 @@ Deployed Dionaea using MHN deployment script. Successfully started capturing att
 - Configured HTTP Event Collector (HEC) with token.
 - Created `forward.py` script to send MHN logs to Splunk.
 
-![Splunk Installation](images/14-splunk-install.png)
+![Splunk Installation](14-splunk-install.png)
 
-![Splunk Login](images/15-splunk-login.png)
+![Splunk Login](15-splunk-login.png)
 
-![HEC Token Configuration](images/16-hec-config.png)
+![HEC Token Configuration](16-hec-config.png)
 
-![Forward.py Script](images/17-forward-py.png)
+![Forward.py Script](17-forward-py.png)
 
-![Successful Log Forwarding](images/18-forwarding-success.png)
+![Successful Log Forwarding](18-forwarding-success.png)
 
 ---
 
@@ -124,11 +124,11 @@ Deployed Dionaea using MHN deployment script. Successfully started capturing att
 
 **Splunk Search Results:**
 
-![Splunk Logs Search](images/19-splunk-logs.png)
+![Splunk Logs Search](19-splunk-logs.png)
 
-![Geo Location Search](images/20-splunk-geo.png)
+![Geo Location Search](20-splunk-geo.png)
 
-![Final Splunk Dashboard](images/21-splunk-final.png)
+![Final Splunk Dashboard](21-splunk-final.png)
 
 ---
 
