@@ -21,12 +21,6 @@
 ### Author
 **Muhammad Abdullah Siddiqui**
 
-### Group Members
-- M. Abdullah Siddiqui
-- Salman Saeed
-- Umar Khan
-- Zia Ullah
-- Mehboob
 
 ### Environment
 AWS EC2 (Ubuntu 18.04) + Local VMware Workstation
@@ -78,7 +72,7 @@ This project demonstrates the deployment of **Modern Honey Network (MHN)** on AW
 - Resolved `mhn-collector` and `mhn-ui` spawn errors.
 - Manually downloaded missing CSS files from GitHub.
 
-![MHN Installation](images/05-mhn-install.png)
+![MHN Installation](05-mhn-install.png)
 
 ![Supervisor Errors](images/06-supervisor-error.png)
 
